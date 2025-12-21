@@ -8,6 +8,8 @@ TagManager:
   - WallObstacle
   - SphereObstacle
   - HealthBonus
+  - ShelterBonus
+  - ShieldBonus
   layers:
   - Default
   - TransparentFX

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Text scoreText;
+    [SerializeField] public Text scoreText;
 
 
     private void Update()
     {
-        scoreText.text = "Score: " + ((int)(player.position.z / 2)).ToString();
+        scoreText.text = ((int)(player.position.z / 2)).ToString();
     }
 }

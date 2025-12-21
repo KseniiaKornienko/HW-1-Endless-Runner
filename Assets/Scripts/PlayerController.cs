@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private Text playerHealthText;
+    [SerializeField] private Score scoreScript;
     private bool isImmortal;
-   // [SerializeField] private GameObject losePanel;
 
     private int lineToMove = 1;
     public float lineDistance = 4;
@@ -29,9 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         controller = GetComponent<CharacterController>();
-        // losePanel.SetActive(false);
         Time.timeScale = 1;
-       // Debug.Log(playerHealth);
         StartCoroutine(SpeedIncrease());
         isImmortal = false;
     }
@@ -60,7 +58,6 @@ public class PlayerController : MonoBehaviour
         } else if (lineToMove == 2) {
             targetPosition += Vector3.right * lineDistance;
         }
-        //transform.position = targetPosition;
         if (transform.position == targetPosition)
             return;
         Vector3 diff = targetPosition - transform.position;
@@ -87,6 +84,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log(currentHealth);
             if (currentHealth <= 0) {
                 playerHealthText.text = "Health: 0";
+                int lastRunScore = int.Parse(scoreScript.scoreText.text.ToString());
+                PlayerPrefs.SetInt("lastRunScore", lastRunScore);
                 gm.EndGame();
             } else {
                 playerHealthText.text = "Health: " + currentHealth.ToString();
@@ -102,6 +101,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log(currentHealth);
             if (currentHealth <= 0) {
                 playerHealthText.text = "Health: 0";
+                int lastRunScore = int.Parse(scoreScript.scoreText.text.ToString());
+                PlayerPrefs.SetInt("lastRunScore", lastRunScore);
                 gm.EndGame();
             } else {
                 playerHealthText.text = "Health: " + currentHealth.ToString();
